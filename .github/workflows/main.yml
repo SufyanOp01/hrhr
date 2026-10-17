@@ -2,7 +2,7 @@ import requests, re
 import time
 import random, string
 
-def generate_random_account:
+def generate_random_account
     return ''.join(random.choices(string.ascii_lowercase, k=10)) + ''.join(random.choices(string.digits, k=4)) + '@yahoo.com'
 
 acc = generate_random_account()
