@@ -7,7 +7,7 @@ def generate_random_account
 
 acc = generate_random_account()
 
-def Tele(ccx):
+def Tele(ccx)
     import requests
     ccx=ccx.strip()
     n = ccx.split("|")[0]
